@@ -1,0 +1,131 @@
+﻿@*@model IEnumerable<HuseKnives.Models.Inventory>*@
+@model PagedList.IPagedList<HuseKnives.Models.Inventory>
+
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Index", "Inventories", FormMethod.Get, new { style = "margin: 70px;" }))
+{
+    <p>
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+
+<div class="container-fluid bg-3 text-center">
+    <div class="row">
+        <div class="col-sm-3">
+            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+           
+        </div>
+        <div class="col-sm-3">
+            <p>Some text..</p>
+            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+            
+        </div>
+        <div class="col-sm-3">
+            <p>Some text..</p>
+            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+            
+        </div>
+        <div class="col-sm-3">
+            <p>Some text..</p>
+            <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+           
+        </div>
+    </div>
+</div><br>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.WeaponName)*@
+            @Html.ActionLink("Weapon Name", "Index", new { sortOrder = "WeaponName", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Weapon Description
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.BladeSteel)*@
+            @Html.ActionLink("Blade Steel Type", "Index", new { sortOrder = "BladeSteel", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.HandleMaterial)*@
+            @Html.ActionLink("Handle Material", "Index", new { sortOrder = "HandleMaterial", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.RCHardness)*@
+            @Html.ActionLink("Rockwell Hardness Scale", "Index", new { sortOrder = "RCHardness", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Weight)*@
+            @Html.ActionLink("Weight", "Index", new { sortOrder = "Weight", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Price)*@
+            @Html.ActionLink("Price", "Index", new { sortOrder = "Price", currentFilter = ViewBag.CurrentFilter })
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeaponName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeaponDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BladeSteel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HandleMaterial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RCHardness)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
+
+
+
