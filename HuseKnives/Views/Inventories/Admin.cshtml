@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<HuseKnives.Models.Inventory>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="margin-top:60px">Admin</h2>
+
+
+@using (Html.BeginForm("Admin", "Inventories", FormMethod.Get, new { style = "margin: 70px;" }))
+{
+    <p>
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            Image
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.WeaponName)*@
+            @Html.ActionLink("Knife's Name", "Admin", new { sortOrder = "WeaponName", currentFilter = ViewBag.CurrentFilter })
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <h2>@Html.ActionLink("Create New Knife", "Create", new { id = item.Id })</h2>
+        <br />
+        <h4 style="display:flex; justify-content:center">Edit Existing Knives</h4>
+        <td>
+            <img class="img" src="@Url.Action(item.Image.ImageName, "images", new { Area =""})"
+                 style="width:100px;height:100px; " />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WeaponName)
+        </td>
+        <td>
+
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+
+    </tr>
+    }
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Admin", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+

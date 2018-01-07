@@ -18,8 +18,66 @@ namespace HuseKnives.Controllers
     {
         private InventoryContext db = new InventoryContext();
 
-        // GET: Inventories
+        public ActionResult Admin(string sortOrder, string currentFilter, string searchString, int? page)
+        {
 
+
+            //This creates a tempary sorting order (which will be default if null)
+            ViewBag.CurrentSort = sortOrder;
+
+            //This checks to see if searchstring is null or not, and if searchstring IS NULL , then list page one
+            if (searchString != null)
+            {
+                page = 1;
+
+            }
+            else
+            {
+                // if it's NOT NULL then assign the current filter to the searchstring paramter
+                searchString = currentFilter;
+            }
+
+            // filter the values of teh database
+            var Results = (IQueryable<Inventory>)db.Inventories;
+
+
+            //assign searchstring to whatever the currentfilter is
+            ViewBag.CurrentFilter = searchString;
+
+            //if the user types in anything in the search box, search the database
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Results = Results.Where(x => x.WeaponName.Contains(searchString)
+                || x.BladeSteel.Contains(searchString)
+                || x.HandleMaterial.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "WeaponName":
+                    Results = Results.OrderByDescending(x => x.WeaponName);
+                    break;
+                case "BladeSteel":
+                    Results = Results.OrderByDescending(x => x.BladeSteel);
+                    break;
+                case "HandleMaterial":
+                    Results = Results.OrderByDescending(x => x.HandleMaterial);
+                    break;
+                default:
+                    Results = Results.OrderByDescending(x => x.Id);
+                    break;
+
+            }
+
+
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+
+            //return the results of the search
+            return View(Results.ToPagedList(pageNumber, pageSize));
+        }
+
+        // GET: Inventories
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
 

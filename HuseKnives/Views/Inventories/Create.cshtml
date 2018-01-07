@@ -4,14 +4,13 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Create</h2>
+<h2 style="margin-top:60px">Add New Knife to Inventory</h2>
 
 @using (Html.BeginForm("Create", "Inventories", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Inventory</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -98,7 +97,7 @@
 </div>
 }
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") 
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -1,34 +1,44 @@
-﻿@model IEnumerable<HuseKnives.Models.Inventory>
+﻿@*@model IEnumerable<HuseKnives.Models.Inventory>*@
+@model IEnumerable<HuseKnives.Models.Inventory>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@foreach (var item in Model)
-{
-    <div class="container-fluid bg-3 text-center">
-        <div class="row">
-            <div class="col-sm-3">
-                <img src="~/images/@Url.Content(item.Image.ImageName)" class="img-responsive" style="width:100%" alt="Image">
-            </div>
-            <div class="col-sm-3">
-                <img src="~/images/@Url.Content(item.Image.ImageName)" class="img-responsive" style="width:100%" alt="Image">
-            </div>
-            <div class="col-sm-3">
-                <img src="~/images/@Url.Content(item.Image.ImageName)" class="img-responsive" style="width:100%" alt="Image">
-            </div>
-            <div class="col-sm-3">
-                <img src="~/images/@Url.Content(item.Image.ImageName)" class="img-responsive" style="width:100%" alt="Image">
+@*@foreach (var item in Model.Take(2))
+    {
+        <div class="container-fluid bg-3 text-center">
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="~/images/@item.Image.ImageName" class="img-responsive" style="width:100%" alt="Image">
+                </div>
+                <div class="col-sm-3">
+                    <img src="~/images/@Url.Content(item.Image.ImageName)" class="img-responsive" style="width:100%" alt="Image">
+                </div>
+                <div class="col-sm-3">
+                    <img src="~/images/@Url.Content(item.Image.ImageName)" class="img-responsive" style="width:100%" alt="Image">
+                </div>
+                <div class="col-sm-3">
+                    <img src="~/images/@Url.Content(item.Image.ImageName)" class="img-responsive" style="width:100%" alt="Image">
+                </div>
             </div>
         </div>
-    </div>
-}
+    }*@
 <br>
-
-
-
-
-
-
+<ul style="list-style:none; margin-top: 60px" class="row">
+    @foreach (var item in Model)
+    {
+        <li class="col-md-3">
+            <a href='@Url.Action("Details", new { id = item.Id })'>
+                <img class="img" src="@Url.Action(item.Image.ImageName, "images", new { Area =""})"
+                     style="width:100%; " />
+            </a>
+            <br />
+            <a href='@Url.Action("Details", new { id = item.Id })' style="display:flex; justify-content:center;">
+                <label>@item.WeaponName</label>
+            </a>
+        </li>
+    }
+</ul>
 
 
