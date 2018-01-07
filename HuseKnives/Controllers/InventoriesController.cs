@@ -10,6 +10,7 @@ using HuseKnives.Data;
 using HuseKnives.Models;
 using PagedList.Mvc;
 using PagedList;
+using System.IO;
 
 namespace HuseKnives.Controllers
 {
@@ -109,17 +110,56 @@ namespace HuseKnives.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,WeaponName,WeaponDescription,BladeSteel,HandleMaterial,RCHardness,Weight,Price,IsActive")] Inventory inventory)
+        //public ActionResult Create([Bind(Include = "Id,WeaponName,WeaponDescription,BladeSteel,HandleMaterial,RCHardness,Weight,Price,IsActive")] Inventory inventory)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Inventories.Add(inventory);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View(inventory);
+        //}
+        public ActionResult Create(InventoryViewModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Inventories.Add(inventory);
+
+                if (model.File != null)
+                {
+                    //string pic = string.Concat(String.Format("{0:s}", DateTime.Now), Path.GetFileName(model.File.FileName));
+                    string pic = Path.GetFileName(model.File.FileName);
+                    string dirPath = Server.MapPath("~/images/");
+                    if (!System.IO.Directory.Exists(dirPath))
+                    {
+                        System.IO.Directory.CreateDirectory(dirPath);
+                    }
+
+                    string path = Path.Combine(
+                                         Server.MapPath("~/images"), pic);
+
+                    //Save the image
+                    model.File.SaveAs(path);
+
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        model.File.InputStream.CopyTo(ms);
+                        byte[] array = ms.GetBuffer();
+                    }
+
+                    model.Inventories.Image.ImageName = model.File.FileName;
+
+                }
+
+                db.Inventories.Add(model.Inventories);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(inventory);
+            return View(model);
         }
+
 
         // GET: Inventories/Edit/5
         public ActionResult Edit(int? id)

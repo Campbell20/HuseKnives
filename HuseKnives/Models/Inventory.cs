@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -57,5 +58,10 @@ namespace HuseKnives.Models
         [DisplayName("Add Item to Website?")]
         //The weapon will never be deleted from the database, but instead moved to "inactive" status. This way the customer can reactivate the weapon's sale item if needed.
         public bool IsActive { get; set; }
+
+        public int ImageId { get; set; }
+
+        [ForeignKey("ImageId")]
+        public virtual Image Image { get; set; }  
     }
 }

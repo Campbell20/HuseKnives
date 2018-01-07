@@ -7,13 +7,13 @@ namespace HuseKnives.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AdjustedSortOrder : IMigrationMetadata
+    public sealed partial class ChangedDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AdjustedSortOrder));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangedDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801011410150_AdjustedSortOrder"; }
+            get { return "201801070240546_ChangedDatabase"; }
         }
         
         string IMigrationMetadata.Source

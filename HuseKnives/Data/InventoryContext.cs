@@ -16,6 +16,6 @@ namespace HuseKnives.Data
         }
 
         public DbSet<Inventory> Inventories { get; set; }
-        
+        public DbSet<Image> Images { get; set; }
     }
 }

@@ -3,7 +3,7 @@ namespace HuseKnives.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedDisplayNames : DbMigration
+    public partial class ChangedViewModel : DbMigration
     {
         public override void Up()
         {

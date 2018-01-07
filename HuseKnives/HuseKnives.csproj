@@ -160,28 +160,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801011307093_FirstMigration.cs" />
-    <Compile Include="Migrations\201801011307093_FirstMigration.Designer.cs">
-      <DependentUpon>201801011307093_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201801070240546_ChangedDatabase.cs" />
+    <Compile Include="Migrations\201801070240546_ChangedDatabase.Designer.cs">
+      <DependentUpon>201801070240546_ChangedDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801011323522_AdjustedModelExpressions.cs" />
-    <Compile Include="Migrations\201801011323522_AdjustedModelExpressions.Designer.cs">
-      <DependentUpon>201801011323522_AdjustedModelExpressions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801011325375_AdjustedModelExpressions2.cs" />
-    <Compile Include="Migrations\201801011325375_AdjustedModelExpressions2.Designer.cs">
-      <DependentUpon>201801011325375_AdjustedModelExpressions2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801011340295_AddedDisplayNames.cs" />
-    <Compile Include="Migrations\201801011340295_AddedDisplayNames.Designer.cs">
-      <DependentUpon>201801011340295_AddedDisplayNames.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801011410150_AdjustedSortOrder.cs" />
-    <Compile Include="Migrations\201801011410150_AdjustedSortOrder.Designer.cs">
-      <DependentUpon>201801011410150_AdjustedSortOrder.cs</DependentUpon>
+    <Compile Include="Migrations\201801070323543_ChangedViewModel.cs" />
+    <Compile Include="Migrations\201801070323543_ChangedViewModel.Designer.cs">
+      <DependentUpon>201801070323543_ChangedViewModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Inventory.cs" />
+    <Compile Include="Models\InventoryViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -304,20 +294,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801011307093_FirstMigration.resx">
-      <DependentUpon>201801011307093_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801070240546_ChangedDatabase.resx">
+      <DependentUpon>201801070240546_ChangedDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801011323522_AdjustedModelExpressions.resx">
-      <DependentUpon>201801011323522_AdjustedModelExpressions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801011325375_AdjustedModelExpressions2.resx">
-      <DependentUpon>201801011325375_AdjustedModelExpressions2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801011340295_AddedDisplayNames.resx">
-      <DependentUpon>201801011340295_AddedDisplayNames.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801011410150_AdjustedSortOrder.resx">
-      <DependentUpon>201801011410150_AdjustedSortOrder.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801070323543_ChangedViewModel.resx">
+      <DependentUpon>201801070323543_ChangedViewModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

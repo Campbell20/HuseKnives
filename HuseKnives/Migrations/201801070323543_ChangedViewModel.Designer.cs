@@ -7,13 +7,13 @@ namespace HuseKnives.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AdjustedModelExpressions : IMigrationMetadata
+    public sealed partial class ChangedViewModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AdjustedModelExpressions));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangedViewModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801011323522_AdjustedModelExpressions"; }
+            get { return "201801070323543_ChangedViewModel"; }
         }
         
         string IMigrationMetadata.Source
